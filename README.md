@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Next JS Routing
+
+1. Simple Route
+- create a folder inside /app directory
+- create a `page.js` file inside this folder.
+- Add a default export component.
+
+2. Nested Route
+- courses/frontend/react
+- courses/frontend/vue
+- courses/frontend/laravel
+- courses/frontend/node-express
+
+3. Dynamic Route
+- Create a folder enclosed by []->`products/[id]`
+- Route: `products/:id`
+
+4. Nested dynamic Route
+- Route:`products/:id/reviews/:reviewId`
+
+5. Catch all segments
+
+
+
