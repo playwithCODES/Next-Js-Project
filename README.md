@@ -56,6 +56,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Route:`products/:id/reviews/:reviewId`
 
 5. Catch all segments
+- Folder Structure:`/news/[...slug]`
+
+
+6. Route Groups
+- Route `login`,`register`
+- But it should be inside  `/auth` folder
+- name the `/auth` folder as `(auth)`
+
+7. Private Folders
+
+- `/_<folder_name>`->`/_components`
+
+8. Not found route/page
+- app`/not-found.js`
+
 
 
 
