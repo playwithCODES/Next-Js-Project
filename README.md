@@ -71,6 +71,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 8. Not found route/page
 - app`/not-found.js`
 
+## NextJS File System
+
+- page.js (Routing)
+- not-found.js(Not Found page)
+- layout.js/layout.tsx
+
+## Nested Layout
+
+- Use layout inside a route
+    
 
 
 
