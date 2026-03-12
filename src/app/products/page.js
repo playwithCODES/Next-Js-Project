@@ -1,10 +1,25 @@
+import config from "@/config/config";
+import axios from "axios";
 
-const ProductsPage = () => {
+export const metadata = {
+  title: "Products | E-Bazaar",
+};
+const ProductsPage = async () => {
+  const response = await axios.get(`${config.apiUrl}/api/products`);
+  const products = response.data;
   return (
-    <div>
-      <h1>This is the product page</h1>
-    </div>
-  )
-}
+    <section className="py-8">
+      <div className="Container mx-auto px-10">
+        <div className="grid grid-cols-1 gap-2">
+          {products.map((product) => (
+            <div key={product._id}>
+              {product.name} {product.brand} {product.price}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default ProductsPage;

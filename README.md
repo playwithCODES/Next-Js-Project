@@ -80,7 +80,26 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Nested Layout
 
 - Use layout inside a route
-    
+
+## Params and Search Params
+
+- params:dynamic route parameter (id), page.js & layout.js
+- searchParams:query parameter(?q=test), available only on page.js
+
+## Metadata
+- Metadata  api is used to define metadata of page
+- can be used in page.js/layout.js
+- Useful for SEO
+- static:metadata 
+- dynamic:generateMetadata
+
+- loading.js 
+- error.js
+- File hierarchy
+
+- Rendering
+
+
 
 
 

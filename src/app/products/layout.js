@@ -1,4 +1,6 @@
-import ProductsBanner from "@/Components/products/Banner";
+import ProductsBanner from "@/Components/product/Banner";
+
+
 
 const ProductsLayout = ({children}) => {
   return (

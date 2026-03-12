@@ -1,11 +1,11 @@
+const ProductByIdPage =async  ({ params }) => {
+  const {id}=await params;
 
-const ProductByIdPage = ({params}) => {
   return (
     <div>
-      <h1>Product id is {params.id}</h1>
-
+      <h1>Product id is {id}</h1>
     </div>
-  )
-}
+  );
+};
 
-export default ProductByIdPage
+export default ProductByIdPage;
