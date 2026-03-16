@@ -1,5 +1,6 @@
 import config from "@/config/config";
 import axios from "axios";
+import Link from "next/link";
 
 export const metadata = {
   title: "Products | E-Bazaar",
@@ -12,9 +13,9 @@ const ProductsPage = async () => {
       <div className="Container mx-auto px-10">
         <div className="grid grid-cols-1 gap-2">
           {products.map((product) => (
-            <div key={product._id}>
+            <Link href={`/products/${product._id}`} key={product._id} className="hover:text-primary">
               {product.name} {product.brand} {product.price}
-            </div>
+            </Link>
           ))}
         </div>
       </div>
