@@ -11,6 +11,7 @@ import {
   FORGOT_PASSWORD_ROUTE,
   RESET_PASSWORD_ROUTE,
 } from "@/Constants/routes";
+import Navlink from "./Navlink";
 
 import Link from "next/link";
 import { FaMoon, FaShoppingCart, FaUser } from "react-icons/fa";
@@ -26,23 +27,13 @@ const Header = () => {
             className="w-8 h-8"
           />
           <h1 className="text-2xl font-bold text-gray-800">
+            
             MERN<span className="text-blue-500">Shop</span>
           </h1>
         </Link>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center text-xl font-bold space-x-6 text-gray-700">
-          {navlinks.map((navlink) => (
-            <Link
-              key={navlink.route}
-              href={navlink.route}
-              className="hover:text-blue-500 transition"
-            >
-              {navlink.label}
-            </Link>
-          ))}
-
-         </nav>
+     <Navlink/>
 
         {/* Icons */}
         <div className="flex items-center space-x-4 text-gray-700 text-lg">
