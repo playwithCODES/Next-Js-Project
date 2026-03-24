@@ -25,9 +25,9 @@ const ProductCard = ({_id,  name, price, brand, category, imageUrls }) => {
       </Link>
 
       <div className="p-4 space-y-2">
-        <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-1">
+        <Link href={`${PRODUCTS_ROUTE}/${_id}`}  className="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-1 hover:text-primary hover:underline">
           {name}
-        </h3>
+        </Link>
 
         <div className="flex mb-2 items-center">
           <div className="flex text-yellow-500 ">{category}</div>
