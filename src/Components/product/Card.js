@@ -8,18 +8,16 @@ import Link from "next/link";
 const ProductCard = ({_id,  name, price, brand, category, imageUrls }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 h-full ">
-
-   
       
       <Link href={`${PRODUCTS_ROUTE}/${_id}`} className="relative">
       <Image
        src={imageUrls[0]}
-          alt="product"
+          alt={name}
           className="w-full h-48 object-cover"
           height={400}
           width={600}
       />
-       <span className=" absolute top-3 right-3 bg-green-500 text-white text-xs font-medium rounded-xl px-2 py-1">
+       <span className=" absolute top-3 right-3 bg-teal-700 text-white text-xs font-medium rounded-xl px-2 py-1">
           {brand}
         </span>
       </Link>

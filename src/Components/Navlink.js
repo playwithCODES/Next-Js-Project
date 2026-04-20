@@ -1,3 +1,4 @@
+"use client";
 import navlinks from "@/Constants/navlinks";
 import { HOME_ROUTE } from "@/Constants/routes";
 import Link from "next/link";
@@ -12,6 +13,7 @@ const Navlink = () => {
           const isActive =
            pathname == navlink.route ||
            (navlink.route!==HOME_ROUTE && pathname.startsWith(navlink.route))
+           console.log(`Navlink: ${navlink.route} | Active: ${isActive}`);
           return (
             <Link
               key={navlink.route}
