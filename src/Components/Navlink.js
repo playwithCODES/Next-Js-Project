@@ -13,7 +13,7 @@ const Navlink = () => {
           const isActive =
            pathname == navlink.route ||
            (navlink.route!==HOME_ROUTE && pathname.startsWith(navlink.route))
-           console.log(`Navlink: ${navlink.route} | Active: ${isActive}`);
+          //  console.log(`Navlink: ${navlink.route} | Active: ${isActive}`);
           return (
             <Link
               key={navlink.route}

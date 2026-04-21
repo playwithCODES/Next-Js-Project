@@ -16,6 +16,7 @@ const ProductsBanner = () => {
            height={999}
            width={999}
            className="w-full absolute bottom-0 left-0 -z-10"
+           loading="eager"
            />
 
 
