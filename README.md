@@ -94,7 +94,30 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Useful for SEO
 - static:metadata 
 - dynamic:generateMetadata
+
+## Auth
+- Credentials-> Login -> token(API) -> Store locally in the browser
+- If token->User is logged in->Use this token in API request
+- Else -> USer is not logged in
+
+## Storage
+- Local Storage:
+  - Size:5 MB
+  - Available only on browser
+  - Data is stored forever
+
+- Session Storage:
+   - Size: 5 MB
+   - Available only on browser
+   - Data is cleared on tab close
+
+- Cookie Storage:
+    - Size:4 KB
+    - Available on browser & server
+    - Data is stored permanently , with expiry date
  
+
+ ## HTTP Requests
 ======================================= 
 
 - error.js
