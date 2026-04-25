@@ -12,7 +12,7 @@ const AuthLayout = ({children}) => {
         alt=""
         height={800}
         width={1200}
-        className="h-screen absolute w-full  top-0 left-0 object-cover -z-1"
+        className="min-h-screen h-full absolute w-full  top-0 left-0 object-cover -z-1"
         />
       <div className="container mx-auto  px-6">
           {children}

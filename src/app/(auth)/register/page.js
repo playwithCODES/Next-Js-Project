@@ -1,13 +1,30 @@
+"use client";
 import Logo from "@/Components/Logo";
 import Link from "next/link";
 import React from "react";
 import { LOGIN_ROUTE } from "@/Constants/routes";
+import { useForm } from "react-hook-form";
+import { signUp } from "@/api/auth";
+
 const RegisterPage = () => {
+  const { register, handleSubmit } = useForm();
+
+  async function submitForm(data) {
+    try {
+      const result = await signUp(data);
+      const token = result.token;
+      localStorage.setItem("authToken", token);
+      console.log(result);
+    } catch (error) {
+      console.log("Kuch to gadbad hai daya");
+    }
+  }
+
   return (
     <div>
       <div className="flex items-center flex-col justify-center w-full  px-4 gap-8">
         <Logo className="text-xl font-semibold tracking-widest" />
-        <form className="">
+        <form onSubmit={handleSubmit(submitForm)}>
           <h2 className="text-3xl font-medium text-gray-900">Sign up</h2>
           <p className="mt-2 text-base text-gray-500/90">
             Please enter your details .
@@ -19,7 +36,7 @@ const RegisterPage = () => {
               className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
               required
               type="text"
-              name="name"
+              {...register("name")}
             />
           </div>
 
@@ -30,7 +47,7 @@ const RegisterPage = () => {
               className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
               required
               type="email"
-              name="email"
+              {...register("email")}
             />
           </div>
 
@@ -41,8 +58,29 @@ const RegisterPage = () => {
               className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
               required
               type="tel"
-              name="phone"
+              {...register("phone")}
             />
+          </div>
+
+          <div className="mt-4 ">
+            <label className="font-medium ">Address</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <input
+                placeholder="Please enter your city"
+                className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
+                required
+                type="text"
+                {...register("city")}
+              />
+
+              <input
+                placeholder="Please enter your province"
+                className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
+                required
+                type="text"
+                {...register("province")}
+              />
+            </div>
           </div>
 
           <div className="mt-4">
@@ -52,7 +90,7 @@ const RegisterPage = () => {
               className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
               required
               type="password"
-              name="password"
+              {...register("password")}
             />
           </div>
           <button

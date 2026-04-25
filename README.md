@@ -118,15 +118,34 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
  
 
  ## HTTP Requests
+- Hypertext Transfer Protocol
+- GET:Fetch data(Read)
+- POST:Create Data(Create)
+- PUT:Update Data(Update)
+- DELETE:Delete Head(Delete)
+
+- PATCH:Partial Head
+- HEAD
+
 ======================================= 
 
 - error.js
 - File hierarchy
 - Rendering
 
+## Global State Management(Redux)
+
+The three concepts of redux :
+1.Store:It stores data, one and only store, to maintain single source of truth 
+2.Action:
+3.Reducer:
+
+
 ============================================
 
 - Form(React Hook Form)
+   - register has 4 things which are name, ref, onChange and onBlur
+
 - API integration (using axios)
 - Global State Management(Redux)
 

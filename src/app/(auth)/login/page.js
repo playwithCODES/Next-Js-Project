@@ -4,13 +4,26 @@ import Link from "next/link";
 import React from "react";
 import { REGISTER_ROUTE } from "@/Constants/routes";
 import { useForm } from "react-hook-form";
+import { login } from "@/api/auth";
 
 const Loginpage = () => {
-  const {register, handleSubmit}=useForm();
+  const { register, handleSubmit, reset } = useForm({});
+
+  async function submitForm(data) {
+    try {
+      const result = await login(data);
+      const token = result.token;
+      localStorage.setItem("authToken", token);
+      console.log(result);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+  
   return (
     <div className="flex items-center flex-col justify-center w-full  px-4 gap-20">
       <Logo className="text-xl font-semibold tracking-widest" />
-      <form className="">
+      <form onSubmit={handleSubmit(submitForm)}>
         <h2 className="text-3xl font-medium text-gray-900">Sign in</h2>
         <p className="mt-3 text- base text-gray-500/90">
           Please enter email and password to access.
