@@ -136,9 +136,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Global State Management(Redux)
 
 The three concepts of redux :
-1.Store:It stores data, one and only store, to maintain single source of truth 
-2.Action:
-3.Reducer:
+1. Store:It stores data, one and only store, to maintain single source of truth 
+2. Action:Function that is dispatched on user interaction/event trigger/api call to change state
+3. Reducer:Binds store and action, stores the state data, responsible for UI transition
 
 
 ============================================
