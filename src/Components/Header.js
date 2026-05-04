@@ -18,6 +18,7 @@ import Link from "next/link";
 import { FaMoon, FaShoppingCart, FaUser } from "react-icons/fa";
 import config from "@/config/config";
 import Logo from "./Logo";
+import ThemeController from "../Components/ThemeController";
 
 const Header = () => {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ const Header = () => {
 
   if (hideHeader) return null;
   return (
-    <header className="bg-white shadow-md">
+    <header className="bg-gray-300 dark:bg-gray-800 text-black dark:text-white shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
          <Logo/>
 
@@ -38,9 +39,8 @@ const Header = () => {
 
         {/* Icons */}
         <div className="flex items-center space-x-4 text-gray-700 text-lg">
-          <button className="hover:text-blue-500 transition">
-            <FaMoon />
-          </button>
+         
+         <ThemeController/>
 
           <Link href="/cart" className="hover:text-blue-500 transition">
             <FaShoppingCart />
