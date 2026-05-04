@@ -4,6 +4,7 @@ const userPreferenceSlice = createSlice({
     name:"userPreference",
     initialState:{
         theme:"light",
+        showcart:true,
     },
     reducers:{
         toggleTheme:(state)=>{

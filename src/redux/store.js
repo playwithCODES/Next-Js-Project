@@ -1,12 +1,30 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
-import CounterReducer from "./counter/counterSlice";
-import userPreferenceReducer from "./theme/userPreferenceSlice";
+
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist"; 
+import rootReducer from "./rootReducer";
+import persistStore from "redux-persist/es/persistStore";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig,rootReducer);
+
+// const store = configureStore({
+//   reducer: persistedReducer,
+// });
+
 const store = configureStore({
-  reducer: {
-    counter: CounterReducer,
-    userPreference: userPreferenceReducer,
-  },
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false, // ✅ IMPORTANT
+    }),
 });
 
-export { store };
+const persistor=persistStore(store);
+
+export { store, persistor };

@@ -8,6 +8,12 @@ export const getProducts = async ({searchParams}) => {
   const name=(await searchParams)?.name?? "";
   const brand=(await searchParams)?.brand?? "";
 
-  const response = await axios.get(`${config.apiUrl}/api/products?sort=${sort}&min=${min}&max=${max}&category=${category}&name=${name}&brand=${brand}`);
+  console.log(config.apiUrl);
+  console.log("API URL:", config.apiUrl);
+  // const response = await axios.get(`${config.apiUrl}/api/products?sort=${sort}&min=${min}&max=${max}&category=${category}&name=${name}&brand=${brand}`);
+
+  const response = await axios.get(
+  `${config.apiUrl}/api/products?sort=${sort}&min=${min}&max=${max}&category=${category}&name=${name}&brand=${brand}`
+);
   return response.data;
 }

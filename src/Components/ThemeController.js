@@ -1,5 +1,5 @@
 "use client";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "@/redux/theme/userPreferenceSlice";
 const ThemeController = () => {
@@ -12,7 +12,8 @@ const ThemeController = () => {
       className="hover:text-blue-500 transition"
       onClick={() => dispatch(toggleTheme())}
     >
-      <FaMoon />
+      <FaMoon className="dark:hidden"/>
+      <FaSun className="hidden dark:block"/>
     </button>
   );
 };
