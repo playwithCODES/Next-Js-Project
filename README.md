@@ -150,6 +150,10 @@ The three concepts of redux :
 - Global State Management(Redux)
 
 
+### Async Thunk Action 
+- Async Redux Action
+
+
 
 
 

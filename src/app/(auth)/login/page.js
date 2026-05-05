@@ -4,22 +4,21 @@ import Link from "next/link";
 import React from "react";
 import { REGISTER_ROUTE } from "@/Constants/routes";
 import { useForm } from "react-hook-form";
-import { login } from "@/api/auth";
+import { useDispatch , useSelector} from "react-redux";
+import { loginUser } from "@/redux/auth/authActions";
+import Spinner from "@/Components/Spinner";
 
 const Loginpage = () => {
   const { register, handleSubmit, reset } = useForm({});
 
-  async function submitForm(data) {
-    try {
-      const result = await login(data);
-      const token = result.token;
-      localStorage.setItem("authToken", token);
-      console.log(result);
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  }
+  const dispatch = useDispatch();
   
+  const {loading, error, user}=useSelector((state)=>state.auth);
+
+   function submitForm(data) {
+    dispatch(loginUser(data));
+  }
+
   return (
     <div className="flex items-center flex-col justify-center w-full  px-4 gap-20">
       <Logo className="text-xl font-semibold tracking-widest" />
@@ -50,9 +49,12 @@ const Loginpage = () => {
         </div>
         <button
           type="submit"
-          className="mt-6 py-3 w-full cursor-pointer rounded-md bg-primary text-white transition hover:bg-blue-700"
+          disabled={loading}
+          className="flex items-center justify-center mt-6 py-3 w-full cursor-pointer rounded-md bg-primary text-white transition disabled:opacity-100 hover:bg-blue-700"
         >
+
           Login
+          {loading && <Spinner className="h-6 w-6 fill-primary"/>}
         </button>
         <p className="text-center py-10">
           Don't have an account?

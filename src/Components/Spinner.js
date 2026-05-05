@@ -17,7 +17,7 @@ const Spinner = ({ className = "w-8 h-8  fill brand" }) => {
           fill="currentFill"
         />
       </svg>
-      <span classname="sr-only">Loading...</span>
+      {/* <span classname="sr-only">Loading...</span> */}
     </div>
   );
 };
