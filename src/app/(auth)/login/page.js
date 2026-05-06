@@ -1,12 +1,13 @@
 "use client";
 import Logo from "@/Components/Logo";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { REGISTER_ROUTE } from "@/Constants/routes";
 import { useForm } from "react-hook-form";
 import { useDispatch , useSelector} from "react-redux";
 import { loginUser } from "@/redux/auth/authActions";
 import Spinner from "@/Components/Spinner";
+import { toast } from "react-toastify";
 
 const Loginpage = () => {
   const { register, handleSubmit, reset } = useForm({});
@@ -18,6 +19,10 @@ const Loginpage = () => {
    function submitForm(data) {
     dispatch(loginUser(data));
   }
+
+  useEffect(()=>{
+    if(error) toast.error(error);
+  },[error]);
 
   return (
     <div className="flex items-center flex-col justify-center w-full  px-4 gap-20">

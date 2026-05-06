@@ -6,6 +6,7 @@ import Footer from "@/Components/Footer";
 import config from "@/config/config";
 import AppProvider from "@/app/proivider/appProvider";
 import MainLayout from "@/layouts/MainLayout";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: config.appName,
@@ -24,7 +25,9 @@ const RootLayout = ({ children }) => {
             </main>
             <Footer />
           </MainLayout>
+
         </AppProvider>
+        <ToastContainer position="top-center" autoClose="2500"/>
       </body>
     </html>
   );

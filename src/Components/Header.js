@@ -19,6 +19,7 @@ import { FaMoon, FaShoppingCart, FaUser } from "react-icons/fa";
 import config from "@/config/config";
 import Logo from "./Logo";
 import ThemeController from "../Components/ThemeController";
+import User from "./User";
 
 const Header = () => {
   const pathname = usePathname();
@@ -31,24 +32,22 @@ const Header = () => {
   if (hideHeader) return null;
   return (
     <header className="bg-gray-300 dark:bg-gray-800 text-black dark:text-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-         <Logo/>
+      <div className="max-w-7xl mx-auto px-3 py-3 flex items-center justify-between">
+        <Logo />
 
         {/* Navigation */}
         <Navlink />
 
         {/* Icons */}
         <div className="flex items-center space-x-4 text-gray-700 text-lg">
-         
-         <ThemeController/>
+          <ThemeController/>
 
-          <Link href="/cart" className="hover:text-blue-500 transition">
+          <Link href="/cart" className="text-gray-700 px-2 py-2 dark:text-gray-300 cursor-pointer hover:text-blue-500 transition">
             <FaShoppingCart />
           </Link>
 
-          <Link href={LOGIN_ROUTE} className="hover:text-blue-500 transition">
-            <FaUser />
-          </Link>
+          <User />
+          
         </div>
       </div>
     </header>

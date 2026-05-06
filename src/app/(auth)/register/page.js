@@ -1,24 +1,28 @@
 "use client";
 import Logo from "@/Components/Logo";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { LOGIN_ROUTE } from "@/Constants/routes";
 import { useForm } from "react-hook-form";
 import { signUp } from "@/api/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "@/redux/auth/authActions";
+import { toast } from "react-toastify";
+import Spinner from "@/Components/Spinner";
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
 
-  async function submitForm(data) {
-    try {
-      const result = await signUp(data);
-      const token = result.token;
-      localStorage.setItem("authToken", token);
-      console.log(result);
-    } catch (error) {
-      console.log("Kuch to gadbad hai daya");
-    }
+  const dispatch=useDispatch();
+
+  const {loading, error}=useSelector((state)=>state.auth);
+   function submitForm(data) {
+    dispatch(registerUser(data));
   }
+
+  useEffect(()=>{
+    if(error) toast.error(error);
+  },[error])
 
   return (
     <div>
@@ -95,9 +99,11 @@ const RegisterPage = () => {
           </div>
           <button
             type="submit"
-            className="mt-4 py-3 w-full cursor-pointer rounded-md bg-primary text-white transition hover:bg-blue-700"
+            disabled={loading}
+            className="flex justify-center items-center gap-3 disabled:opacity/80 mt-4 py-3 w-full cursor-pointer rounded-md bg-primary text-white transition hover:bg-blue-700"
           >
             Register
+               {loading && <Spinner className="h-6 w-6 fill-primary"/>}
           </button>
           <p className="text-center py-8">
             Already have an account?

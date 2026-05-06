@@ -13,7 +13,7 @@ const ThemeController = () => {
       onClick={() => dispatch(toggleTheme())}
     >
       <FaMoon className="dark:hidden"/>
-      <FaSun className="hidden dark:block"/>
+      <FaSun className="text-blue-500 hidden dark:block"/>
     </button>
   );
 };
