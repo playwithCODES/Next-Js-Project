@@ -134,24 +134,6 @@ const ProductsFilter = () => {
         </select>
       </div>
 
-      {/* <div className="py-3">
-        <h4 className="mb-2">Brand</h4>
-        <select
-          name="brand"
-          id="brand"
-          onChange={(e) => setBrand(e.target.value)}
-          className="border border-gray-300 rounded-xl w-full px-2 py-1"
-        >
-          <option value="">Select Brand</option>
-          <option value="Apple">Apple</option>
-
-          <option value="OnePlus">OnePlus</option>
-          <option value="Nothing">Nothing</option>
-          <option value="Samsung">Samsung</option>
-          <option value="Dell">Dell</option>
-        </select>
-      </div> */}
-
       <div className="py-3">
         <h4 className="mb-2">Brands</h4>
 

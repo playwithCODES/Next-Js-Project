@@ -1,36 +1,33 @@
-import React from "react";
+import { FaImage, FaShoppingCart } from "react-icons/fa";
+import ProductsFilter from "@/Components/Filter";
 
-const LoadingCard = () => {
+export const LoadingCard = () => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden h-full relative">
+    <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition duration-300">
+      
+      <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
+        <FaImage className="text-gray-300 text-7xl" />
+      </div>
 
-      {/* image */}
-      <div className="w-full h-48 bg-gray-300 dark:bg-gray-700"></div>
+      <div className="absolute top-3 right-3 bg-primary z-10 w-14 h-6 rounded-xl"></div>
 
-      {/* brand */}
-      <span className="absolute top-3 right-3 bg-gray-300 h-5 w-12 rounded-xl"></span>
+      <div className="p-4">
+        <div className="bg-gray-300 w-3/4 h-7 mb-3"></div>
 
-      <div className="p-4 space-y-2">
+        <div className="bg-primary/10 w-24 h-5 rounded"></div>
 
-        {/* name */}
-        <div className="h-5 bg-gray-300 dark:bg-gray-700 rounded w-3/4"></div>
-
-        {/* category */}
-        <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-1/2"></div>
-
-        {/* price section */}
-        <div className="flex justify-between items-center">
-
-          <div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-20 mb-1"></div>
-            <div className="h-3 bg-gray-300 dark:bg-gray-700 rounded w-16"></div>
+        <div className="flex justify-between items-center mt-7">
+          
+          <div className="flex items-baseline">
+            <div className="bg-gray-200 w-24 h-5"></div>
+            <div className="bg-gray-100 w-20 h-4 ml-1"></div>
           </div>
 
-          {/* cart button */}
-          <div className="h-8 w-8 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+          <button className="min-w-10 h-10 text-lg bg-primary text-white px-2.5 py-2 rounded-full">
+            <FaShoppingCart />
+          </button>
 
         </div>
-
       </div>
     </div>
   );
@@ -39,7 +36,11 @@ const LoadingCard = () => {
 
 const ProductsLoading = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+    <section className="container mx-auto px-4 py-5 grid grid-cols-1 lg:grid-cols-[1fr_4fr] gap-8">
+      <ProductsFilter />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
       <LoadingCard />
       <LoadingCard />
@@ -51,6 +52,7 @@ const ProductsLoading = () => {
       <LoadingCard />
 
     </div>
+     </section>
   );
 };
 

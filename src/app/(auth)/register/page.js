@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "@/redux/auth/authActions";
 import { toast } from "react-toastify";
 import Spinner from "@/Components/Spinner";
+import PasswordInput from "@/Components/form/PasswordInput";
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
@@ -78,7 +79,7 @@ const RegisterPage = () => {
               />
 
               <input
-                placeholder="Please enter your province"
+                placeholder="Please enter province"
                 className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
                 required
                 type="text"
@@ -89,13 +90,10 @@ const RegisterPage = () => {
 
           <div className="mt-4">
             <label className="font-medium">Password</label>
-            <input
-              placeholder="Please enter your password"
-              className="mt-2 rounded-md ring ring-gray-200 focus:ring-2 focus:ring-primary outline-none px-3 py-3 w-full"
-              required
-              type="password"
-              {...register("password")}
+            <PasswordInput  {...register("password")}
             />
+           
+         
           </div>
           <button
             type="submit"

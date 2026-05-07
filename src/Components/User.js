@@ -37,7 +37,7 @@ const User = () => {
         className="fixed top-0 left-0 right-0 bottom-0 ">
 
           <div onClick={()=>setShow(false)}
-          className="absolute top-12 right-0 shadow bg-gray-300 rounded-2xl dark:bg-gray-800">
+          className="absolute top-16 right-0 shadow bg-white dark:bg-gray-800">
             <div className="border-b border-gray-950 p-4 dark:border-gray-700 ">
               <h4 className="text-2xl text-gray-600 dark:text-white">
                 {user?.name}
