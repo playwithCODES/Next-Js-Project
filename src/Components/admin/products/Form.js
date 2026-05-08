@@ -1,17 +1,32 @@
 "use client";
-import {useDropzone} from 'react-dropzone'
+import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
 import { useCallback } from "react";
+import { FaTimes } from "react-icons/fa";
+import {useState } from "react"
 const ProductForm = () => {
   const { register, handleSubmit } = useForm();
-    const onDrop = useCallback(acceptedFiles => {
-        console.log(acceptedFiles);
-    // Do something with the files
+  const [selectedImages, setSelectedImages]=useState([]);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+    console.log(selectedImages);
+    const images=acceptedFiles.map((file)=>({
+      ...file,
+      name:file.name,
+      url: URL.createObjectURL(file)}))
+    
+    setSelectedImages(images);
   }, []);
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  
+
+  function submitForm() {}
 
   return (
-    <form action="#">
+    <form onSubmit={handleSubmit(submitForm)}>
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div className="sm:col-span-2">
           <label
@@ -38,7 +53,6 @@ const ProductForm = () => {
           </label>
           <input
             type="text"
-            name="brand"
             id="brand"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-2  focus:ring-primary/50 outline-primary focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             placeholder="Product brand"
@@ -55,10 +69,9 @@ const ProductForm = () => {
           </label>
           <input
             type="number"
-            name="price"
             id="price"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-2  focus:ring-primary/50 outline-primary focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Npr. 1,00,000"
+            placeholder="Enter the Price"
             required
             {...register("price")}
           />
@@ -133,12 +146,21 @@ const ProductForm = () => {
                   <span className="font-semibold">Click to upload</span> or drag
                   and drop
                 </p>
-                <p className="text-xs">JPEG, PNG, JPG  (MAX. 5 MB)</p>
+                <p className="text-xs">JPEG, PNG, JPG (MAX. 5 MB)</p>
               </div>
-              <input 
-              {...getInputProps({accept:".png, .jpg, .jpeg" })}/>
+              <input {...getInputProps({ accept: ".png, .jpg, .jpeg" })} />
             </div>
           </div>
+
+          {selectedImages.map((image, index)=>(
+          <div  key={index} className="border border-gray-200 rounded-lg p-2 flex items-center gap-4 mt-2">
+            <div className="h-16 w-16 rounded-lg bg-gray-300"></div>
+            <h4 className=" flex-1 ">{image.name}</h4> 
+            <button type="button" className="p-2">
+              <FaTimes />
+            </button>
+          </div>
+          ))}
         </div>
 
         <div className="sm:col-span-2">
