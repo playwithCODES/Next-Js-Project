@@ -1,29 +1,65 @@
 "use client";
+import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
 import { useCallback } from "react";
-import { FaTimes } from "react-icons/fa";
-import {useState } from "react"
+import { FaPlus, FaTimes } from "react-icons/fa";
+import Image from "next/image";
+import { useState } from "react";
+import { addProduct } from "@/api/products";
+import { useRouter } from "next/navigation";
+import Spinner from "@/Components/Spinner";
 const ProductForm = () => {
   const { register, handleSubmit } = useForm();
-  const [selectedImages, setSelectedImages]=useState([]);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onDrop = useCallback((acceptedFiles) => {
     console.log(acceptedFiles);
-    console.log(selectedImages);
-    const images=acceptedFiles.map((file)=>({
+    setImageFiles(acceptedFiles);
+
+    const images = acceptedFiles.map((file) => ({
       ...file,
-      name:file.name,
-      url: URL.createObjectURL(file)}))
-    
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+
     setSelectedImages(images);
   }, []);
 
+  const { getRootProps, getInputProps} = useDropzone({ onDrop });
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-  
+  function removeImage(index) {
+    setSelectedImages((prev) => prev.filter((_, i) => i !== index));
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
+  }
 
-  function submitForm() {}
+  async function submitForm(data) {
+    setLoading(true);
+    console.log(data);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("brand", data.brand);
+    formData.append("price", data.price);
+    formData.append("category", data.category);
+    formData.append("stock", data.stock ?? 1);
+    if (data.description) formData.append("description", data.description);
+
+    if (imageFiles.length > 0) {
+      imageFiles.map((file) => {
+        formData.append("images", file);
+      });
+    }
+    addProduct(formData)
+      .then((data) => {
+        toast.success("Product created successfully");
+        router.back();
+      })
+      .catch((error) => toast.error(error.response?.data))
+      .finally(() => setLoading(false));
+  }
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
@@ -121,7 +157,7 @@ const ProductForm = () => {
           <div className="flex items-center justify-center w-full">
             <div
               htmlFor="dropzone-file"
-              className="rounded-lg flex flex-col items-center justify-center w-full bg-neutral-secondary-medium border border-dashed border-gray-300 border-default-strong rounded-base cursor-pointer hover:bg-gray-100"
+              className="rounded-lg flex flex-col items-center justify-center w-full bg-neutral-secondary-medium border border-dashed border-gray-300 border-default-strong rounded-base cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
               {...getRootProps()}
             >
               <div className="flex flex-col items-center justify-center text-body pt-5 py-10">
@@ -152,14 +188,28 @@ const ProductForm = () => {
             </div>
           </div>
 
-          {selectedImages.map((image, index)=>(
-          <div  key={index} className="border border-gray-200 rounded-lg p-2 flex items-center gap-4 mt-2">
-            <div className="h-16 w-16 rounded-lg bg-gray-300"></div>
-            <h4 className=" flex-1 ">{image.name}</h4> 
-            <button type="button" className="p-2">
-              <FaTimes />
-            </button>
-          </div>
+          {selectedImages.map((image, index) => (
+            <div
+              key={index}
+              className="border border-gray-200 rounded-lg p-2 flex items-center gap-4 mt-2"
+            >
+              <Image
+                src={image.url}
+                alt=""
+                height={100}
+                width={100}
+                className="h-16 w-16 rounded-lg object-contain"
+              />
+              {/* <div className="h-16 w-16 rounded-lg bg-gray-300"></div> */}
+              <h4 className=" flex-1 ">{image.name}</h4>
+              <button
+                type="button"
+                onClick={() => removeImage(index)}
+                className="p-2 bg-red-500 text-white rounded cursor-pointer"
+              >
+                <FaTimes />
+              </button>
+            </div>
           ))}
         </div>
 
@@ -182,9 +232,13 @@ const ProductForm = () => {
       </div>
       <button
         type="submit"
-        className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-blue-700"
+        disabled={loading}
+        className="disabled:opacity-80 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-blue-700"
       >
-        Add product
+        <span className="mr-2"> Add product</span>
+        {loading ?  <Spinner className="w-6 h-6 fill-primary" />:<FaPlus/> }
+       
+      
       </button>
     </form>
   );

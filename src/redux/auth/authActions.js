@@ -7,14 +7,16 @@ export const loginUser = createAsyncThunk(
     try {
 
       const result = await login(data);
+      console.log(result);
       localStorage.setItem("authToken", result.token);
 
       return result;
+      
 
     } catch (error) {
       return rejectWithValue(error.response?.data);
     }
-  },
+  },  
 );
 
 export const registerUser = createAsyncThunk(
